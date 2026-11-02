@@ -2,26 +2,26 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="自建 UI 动效工作台：状态反馈、浮层生命周期、数值过渡与列表联动。">
-  <title>UI Motion · 自建动效工作台</title><link rel="stylesheet" href="style.css">
+  <meta name="description" content="UI 动效演示：体验按钮状态、弹窗开合、数值变化和列表重排。">
+  <title>UI Motion · 动效演示</title><link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header><a href="#" class="brand">AIGC-Xavier <span>/ Motion</span></a><a href="../README.md">使用说明 ↗</a></header>
+  <header><a href="#" class="brand">UI <span>Motion</span></a><a href="../README.md">使用说明 ↗</a></header>
   <main id="workbench">
-    <section class="intro"><div><p class="eyebrow">SELF-MAINTAINED · UI MOTION</p><h1>交互有回应，<br>状态有来去。</h1><p class="lead">一套从意图出发的组件动效工作流。用真实状态驱动过渡，<br class="wide">让细节服务操作，而不是挡住操作。</p></div><div class="facts"><p><span>资源</span>自行编写的规范、示例与运行代码</p><p><span>依赖</span>浏览器原生能力，无第三方运行依赖</p><p><span>验证</span>可重复的行为测试与手动交互场景</p><p id="motion-preference" role="status"></p></div></section>
-    <div class="section-title"><h2>动手试一试</h2><span>可中断 · 可逆转 · 支持减少动态效果</span></div>
+    <section class="intro"><div><p class="eyebrow">UI MOTION / DEMO</p><h1>试试界面里的<br>四种动效。</h1><p class="lead">按钮状态、弹窗开合、数值变化和列表重排。<br class="wide">点击下方示例，观察每次操作后的变化。</p></div><div class="facts"><p><span>内容</span>4 个交互示例</p><p><span>操作</span>试试中途取消与连续操作</p><p><span>键盘</span>弹窗支持 Tab 导航和 Escape 关闭</p><p id="motion-preference" role="status"></p></div></section>
+    <div class="section-title"><h2>交互示例</h2><span>跟随系统的动态效果设置</span></div>
     <section class="demo-grid" aria-label="交互示例">
-      <article class="demo-card"><div class="card-copy"><p class="eyebrow">状态反馈</p><h3>反馈跟着最后一次操作走</h3><p>观察准备、处理、完成三种状态，也可在中途取消。图标与按钮外壳保持独立。</p></div><div class="stage"><button id="state-button" class="action"><span aria-hidden="true" class="status-dot"></span><span id="state-label">开始演示</span></button><p id="state-status" class="status" role="status">准备就绪</p></div><div class="actions"><button id="cancel-state" class="secondary">取消并复位</button><button id="rapid-state" class="secondary">快速连续切换</button></div></article>
-      <article class="demo-card"><div class="card-copy"><p class="eyebrow">浮层生命周期</p><h3>打开和关闭都完整</h3><p>打开后可用 Tab 导航，用 Escape 关闭。结束回调只属于当前这次过渡。</p></div><div class="stage"><div class="panel-glyph" aria-hidden="true"><span></span><span></span><span></span></div><button id="open-panel" class="action">打开详情</button></div><div class="actions"><span class="hint">焦点进入、循环与返回由组件负责</span></div></article>
-      <article class="demo-card"><div class="card-copy"><p class="eyebrow">数值过渡</p><h3>在时间上前进，而非累积误差</h3><p>每帧根据已过时间计算进度。中途停止后，下一次从当前可见数值继续。</p></div><div class="stage meter-stage"><div class="number"><output id="value-output">0</output><span>%</span></div><div class="meter" aria-hidden="true"><div id="value-bar"></div></div><p id="value-status" class="status" role="status">目标：100</p></div><div class="actions"><button id="run-value" class="secondary">切换目标</button><button id="stop-value" class="secondary">停止</button></div></article>
-      <article class="demo-card"><div class="card-copy"><p class="eyebrow">布局联动</p><h3>内容重排，空间关系不断</h3><p>在布局提交前后测量相同节点。允许异步提交；被移除的节点不承诺退场动画。</p></div><div class="stage list-stage"><ol id="motion-list"><li><span>表单反馈</span><span aria-hidden="true">↗</span></li><li><span>导航切换</span><span aria-hidden="true">↗</span></li><li><span>列表排序</span><span aria-hidden="true">↗</span></li></ol></div><div class="actions"><button id="reorder-list" class="secondary">末项移到首位</button><span id="list-status" class="hint" role="status">3 个稳定节点</span></div></article>
+      <article class="demo-card"><div class="card-copy"><p class="eyebrow">状态反馈</p><h3>按钮状态切换</h3><p>点击“开始演示”，查看处理和完成状态。处理中可取消，或试试快速连续切换。</p></div><div class="stage"><button id="state-button" class="action"><span aria-hidden="true" class="status-dot"></span><span id="state-label">开始演示</span></button><p id="state-status" class="status" role="status">准备就绪</p></div><div class="actions"><button id="cancel-state" class="secondary">取消并重置</button><button id="rapid-state" class="secondary">快速连续切换</button></div></article>
+      <article class="demo-card"><div class="card-copy"><p class="eyebrow">弹窗开合</p><h3>打开、关闭与重新打开</h3><p>打开详情后，用 Tab 移动焦点、按 Escape 关闭，也可以在关闭过程中重新打开。</p></div><div class="stage"><div class="panel-glyph" aria-hidden="true"><span></span><span></span><span></span></div><button id="open-panel" class="action">打开详情</button></div><div class="actions"><span class="hint">关闭后，焦点回到打开按钮</span></div></article>
+      <article class="demo-card"><div class="card-copy"><p class="eyebrow">数值过渡</p><h3>数值平滑变化</h3><p>点击“切换目标”，数值会向 100% 或 20% 变化。中途停止后，再次切换会从当前数值继续。</p></div><div class="stage meter-stage"><div class="number"><output id="value-output">0</output><span>%</span></div><div class="meter" aria-hidden="true"><div id="value-bar"></div></div><p id="value-status" class="status" role="status">目标：100%</p></div><div class="actions"><button id="run-value" class="secondary">切换目标</button><button id="stop-value" class="secondary">停止</button></div></article>
+      <article class="demo-card"><div class="card-copy"><p class="eyebrow">列表重排</p><h3>调整列表顺序</h3><p>点击“末项移到首位”，最后一项会移到最前，其余项目跟着调整位置。</p></div><div class="stage list-stage"><ol id="motion-list"><li><span>表单反馈</span><span aria-hidden="true">↗</span></li><li><span>导航切换</span><span aria-hidden="true">↗</span></li><li><span>列表排序</span><span aria-hidden="true">↗</span></li></ol></div><div class="actions"><button id="reorder-list" class="secondary">末项移到首位</button><span id="list-status" class="hint" role="status">共 3 项</span></div></article>
     </section>
-    <section class="readme-note"><h2>使用有边界，验证有依据。</h2><p>工作流先识别目标状态、触发方式与现有组件约束，再决定是否需要动效。实现时保留原有样式与业务语义；交付时说明实际运行过哪些场景。</p><p>这里展示的是自行编写的参考实现。真实项目仍需检查键盘操作、减少动态效果、重复触发、异步失败及卸载清理。</p></section>
+    <section class="readme-note"><h2>还可以这样试</h2><p>连续点击按钮，或在动效结束前取消、关闭，再观察页面是否停在预期状态。</p><p>在系统设置中开启“减少动态效果”后刷新页面，可以查看直接切换状态的效果。</p></section>
   </main>
   <div id="detail-panel" class="overlay" role="dialog" aria-modal="true" aria-labelledby="panel-heading" aria-describedby="panel-description" hidden>
-    <div class="dialog-panel"><p class="eyebrow">DETAIL / PREVIEW</p><h2 id="panel-heading">一次完整的状态变化</h2><p id="panel-description">此示例负责焦点与键盘操作；过渡工具只负责可见性与当前动画的结束时机。</p><label for="preview-name">试试键盘导航</label><input id="preview-name" placeholder="这里不会发送任何内容"><div class="dialog-actions"><button id="close-panel" class="action">关闭详情</button><button id="reverse-panel" class="secondary">关闭后立即反转</button></div><p id="panel-status" class="status" role="status"></p></div>
+    <div class="dialog-panel"><p class="eyebrow">DIALOG / DEMO</p><h2 id="panel-heading">试试弹窗操作</h2><p id="panel-description">按 Tab 在输入框和按钮间移动，按 Escape 或点击遮罩关闭。点击“关闭后重新打开”，可在关闭过程中再次打开弹窗。</p><label for="preview-name">在这里输入文字</label><input id="preview-name" placeholder="试着输入，再按 Tab"><div class="dialog-actions"><button id="close-panel" class="action">关闭详情</button><button id="reverse-panel" class="secondary">关闭后重新打开</button></div><p id="panel-status" class="status" role="status"></p></div>
   </div>
-  <footer><span>AIGC-Xavier / ui-motion-skill</span><span>自行维护 · 零运行依赖</span></footer>
+  <footer><span>AIGC-Xavier / ui-motion-skill</span><span>Web / H5 动效示例</span></footer>
   <script type="module" src="demo.mjs"></script>
 </body>
 </html>

@@ -7,20 +7,20 @@ $('motion-preference').textContent = matchMedia('(prefers-reduced-motion: reduce
 
 $('state-button').addEventListener('click', async () => {
   const run = ++stateRun;
-  $('state-status').textContent = '正在演示异步处理';
+  $('state-status').textContent = '正在处理…';
   await shiftLabel($('state-label'), '处理中');
   if (run !== stateRun) return;
   await wait(550);
   if (run !== stateRun) return;
   await shiftLabel($('state-label'), '完成');
-  if (run === stateRun) $('state-status').textContent = '处理已完成';
+  if (run === stateRun) $('state-status').textContent = '已完成';
 });
 
 $('cancel-state').addEventListener('click', async () => {
   const run = ++stateRun;
   await shiftLabel($('state-label'), '开始演示');
   if (run !== stateRun) return;
-  $('state-status').textContent = '已取消，保持最新状态';
+  $('state-status').textContent = '已取消，可以重新开始';
 });
 
 $('rapid-state').addEventListener('click', async () => {
@@ -30,7 +30,7 @@ $('rapid-state').addEventListener('click', async () => {
   if (run !== stateRun) return;
   await shiftLabel($('state-label'), '开始演示');
   if (run !== stateRun) return;
-  $('state-status').textContent = '连续切换结束：应保持“开始演示”';
+  $('state-status').textContent = '已回到开始状态';
 });
 
 const panel = $('detail-panel');
@@ -45,7 +45,7 @@ async function openPanel(returnFocus = document.activeElement) {
   const work = setPresence(panel, true);
   $('preview-name').focus();
   await work;
-  if (epoch === panelEpoch) $('panel-status').textContent = '打开完成';
+  if (epoch === panelEpoch) $('panel-status').textContent = '已打开';
   return epoch;
 }
 async function closePanel() {
@@ -68,7 +68,7 @@ $('reverse-panel').addEventListener('click', async () => {
   if (closingEpoch !== panelEpoch) return;
   const openingEpoch = await openPanel(returnFocus);
   if (openingEpoch !== panelEpoch) return;
-  $('panel-status').textContent = '反转完成：面板应保持打开';
+  $('panel-status').textContent = '已重新打开';
 });
 panel.addEventListener('click', event => { if (event.target === panel) closePanel(); });
 panel.addEventListener('keydown', event => {
@@ -90,10 +90,10 @@ $('run-value').addEventListener('click', () => {
     duration: 850,
     onUpdate(value) { visibleValue = value; $('value-output').value = String(Math.round(value)); $('value-bar').style.width = `${Math.max(0, Math.min(100, value))}%`; },
   });
-  $('value-status').textContent = `目标：${valueTarget}`;
+  $('value-status').textContent = `目标：${valueTarget}%`;
   valueTarget = valueTarget === 100 ? 20 : 100;
 });
-$('stop-value').addEventListener('click', () => { valueMotion?.cancel(); $('value-status').textContent = `已停止在 ${Math.round(visibleValue)}`; });
+$('stop-value').addEventListener('click', () => { valueMotion?.cancel(); $('value-status').textContent = `已停止：${Math.round(visibleValue)}%`; });
 
 $('reorder-list').addEventListener('click', async () => {
   const button = $('reorder-list');

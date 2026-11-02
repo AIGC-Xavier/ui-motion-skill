@@ -174,7 +174,7 @@ test('an older rapid-state timer cannot replace a newer state operation', async 
   await flushMicrotasks();
 
   assert.equal(ui.get('state-label').textContent, '处理中');
-  assert.equal(ui.get('state-status').textContent, '正在演示异步处理');
+  assert.equal(ui.get('state-status').textContent, '正在处理…');
 });
 
 test('a cancelled state reset cannot overwrite a newer operation status', async () => {
@@ -185,7 +185,7 @@ test('a cancelled state reset cannot overwrite a newer operation status', async 
   await flushMicrotasks();
 
   assert.equal(ui.get('state-label').textContent, '处理中');
-  assert.equal(ui.get('state-status').textContent, '正在演示异步处理');
+  assert.equal(ui.get('state-status').textContent, '正在处理…');
 });
 
 test('Escape during a delayed reverse leaves the detail panel closed', async () => {
@@ -199,7 +199,7 @@ test('Escape during a delayed reverse leaves the detail panel closed', async () 
   await reverse;
 
   assert.equal(ui.get('detail-panel').hidden, true);
-  assert.notEqual(ui.get('panel-status').textContent, '反转完成：面板应保持打开');
+  assert.notEqual(ui.get('panel-status').textContent, '已重新打开');
   assert.equal(environment.document.activeElement, ui.get('open-panel'));
 });
 
