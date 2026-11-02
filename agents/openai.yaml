@@ -1,0 +1,6 @@
+interface:
+  display_name: "UI 动效"
+  short_description: "为 Web 与 H5 组件审查并实现贴合状态与交互节奏的动效"
+  default_prompt: "Use $ui-motion to review or implement motion in this Web/H5 component within my requested scope."
+policy:
+  allow_implicit_invocation: true

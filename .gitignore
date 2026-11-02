@@ -1,0 +1,8 @@
+node_modules/
+.DS_Store
+.trigger-tree/
+.codex/
+.agents/
+.env
+.env.*
+*.log

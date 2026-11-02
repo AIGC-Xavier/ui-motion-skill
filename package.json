@@ -1,0 +1,12 @@
+{
+  "name": "ui-motion-skill",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Self-maintained Web and H5 motion skill with optional browser-native helpers.",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "validate": "node scripts/validate.mjs",
+    "check": "node --test tests/*.test.mjs && node scripts/validate.mjs"
+  }
+}
